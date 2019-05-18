@@ -129,8 +129,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     private class GetUrlContentTask extends AsyncTask<String, Integer, String> {
+        Boolean error = null;
         protected String doInBackground(String... urls) {
             String result;
+
             try {
                 URL url = new URL(urls[0]);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -165,83 +167,41 @@ public class MainActivity extends AppCompatActivity {
             String dateTime = "";
             JSONObject results;
             Integer colour = Color.BLACK;
+            if (error == null){
+                try{
+                    results = new JSONObject(result);
+                    //dateTime = results.getString("timeLastFed");
+                    //Date dateFed = new Date();
+                    DateManager obj = new DateManager(results.getString("timeLastFed"));
 
-            try{
-                results = new JSONObject(result);
-                //dateTime = results.getString("timeLastFed");
-                //Date dateFed = new Date();
-                DateManager obj = new DateManager(results.getString("timeLastFed"));
+                    //LocalDateTime localDateTime = LocalDateTime.parse(results.getString("timeLastFed"));
+                    dateTime = obj.GetPresentableDate();
 
-                //LocalDateTime localDateTime = LocalDateTime.parse(results.getString("timeLastFed"));
-                dateTime = obj.GetPresentableDate();
 
-                 /*simpleDateFormat = new SimpleDateFormat("dd/M/yyyy hh:mm:ss");
+                    Integer h = 1;
 
-                try {
-                    Date date1 = simpleDateFormat.parse("10/10/2013 11:30:10");
-                    Date date2 = simpleDateFormat.parse("13/10/2013 20:35:55");
+                    if (h < Constants.HEALTHY_FEED_HOURS){
+                        colour = Color.GREEN;
+                    }else if (h < Constants.MINIMUM_HUNGER_START_HOURS){
+                        colour = Color.YELLOW;
+                    } else {
+                        colour = Color.RED;
+                    }
 
-                    obj.printDifference(date1, date2);
 
-                } catch (ParseException e) {
-                    e.printStackTrace();
+
+
+
+
+
+                } catch (Exception e) {
+                    dateTime = e.toString();
                 }
-*/
-
-                /*LocalDateTime fromDateTime = localDateTime;
-                LocalDateTime toDateTime = LocalDateTime.now();
-
-                LocalDateTime tempDateTime = LocalDateTime.from( fromDateTime );
-
-                long years = tempDateTime.until( toDateTime, ChronoUnit.YEARS);
-                tempDateTime = tempDateTime.plusYears( years );
-
-                long months = tempDateTime.until( toDateTime, ChronoUnit.MONTHS);
-                tempDateTime = tempDateTime.plusMonths( months );
-
-                long days = tempDateTime.until( toDateTime, ChronoUnit.DAYS);
-                tempDateTime = tempDateTime.plusDays( days );
-
-
-                long hours = tempDateTime.until( toDateTime, ChronoUnit.HOURS);
-                tempDateTime = tempDateTime.plusHours( hours );
-
-                long minutes = tempDateTime.until( toDateTime, ChronoUnit.MINUTES);
-                tempDateTime = tempDateTime.plusMinutes( minutes );
-
-                long seconds = tempDateTime.until( toDateTime, ChronoUnit.SECONDS);
-
-                System.out.println( years + " years " +
-                        months + " months " +
-                        days + " days " +
-                        hours + " hours " +
-                        minutes + " minutes " +
-                        seconds + " seconds.");
-
-                Integer h = Math.toIntExact(hours);
-                Integer d = Math.toIntExact(days*24);
-                h=h+d;
-                //dateTime = (h).toString();
-                */
-                Integer h = 1;
-
-                if (h < Constants.HEALTHY_FEED_HOURS){
-                    colour = Color.GREEN;
-                }else if (h < Constants.MINIMUM_HUNGER_START_HOURS){
-                    colour = Color.YELLOW;
-                } else {
-                    colour = Color.RED;
-                }
-
-
-
-
-
-
-
-            } catch (Exception e) {
-                dateTime = "Json Error";
+            } else {
+                dateTime = result;
             }
+
+
 
 
 

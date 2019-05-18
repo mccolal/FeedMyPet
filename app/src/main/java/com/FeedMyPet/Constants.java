@@ -9,4 +9,5 @@ public class Constants {
     public static final Integer HEALTHY_FEED_HOURS = 6;
     public static final Integer MINIMUM_HUNGER_START_HOURS = 8;
     public static final Integer MINIMUM_STARVING_START_HOURS=11;
+    public static final Boolean CONNECTION_ERROR = true;
 }
