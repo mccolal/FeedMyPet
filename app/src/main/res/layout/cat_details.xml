@@ -6,8 +6,8 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="729dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginStart="2dp"
         android:layout_marginLeft="2dp"
         android:layout_marginTop="2dp"
@@ -17,44 +17,79 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="140dp"
-            android:orientation="horizontal">
+            android:layout_height="30dp"
+            android:layout_weight=".08">
+            <android.support.v4.widget.Space
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"/>
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="60dp"
+                android:layout_width="120dp"
                 android:layout_height="29dp"
-                android:layout_weight=".25"
-                android:text="@string/txtLastFed"
-                android:textSize="24sp" />
+                android:textColor="@color/black"
 
+                android:text="@string/txtLastFed"
+                android:textSize="24sp"/>
+            <android.support.v4.widget.Space
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight=".1">
+            <android.support.v4.widget.Space
+                android:layout_width="1dp"
+
+                android:layout_height="1dp"
+                android:layout_weight=".25"/>
             <TextView
                 android:id="@+id/txtTimeLastFed"
-                android:layout_width="60dp"
-                android:layout_height="91dp"
-                android:layout_weight="1"
-                android:text="time"
-                android:textSize="24sp" />
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:layout_weight=".5"
+                android:text="FRIDAY - 18:30"
+                android:gravity="center"
+                android:textSize="32sp" />
+            <android.support.v4.widget.Space
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_weight=".25"/>
         </LinearLayout>
+
+
+
+
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="324dp"
             android:contentDescription="@string/cat_main_image"
-            app:srcCompat="@mipmap/catmain_background" />
+            app:srcCompat="@mipmap/catmain_background"
+            android:layout_weight=".62"/>
 
         <Button
             android:id="@+id/btnFeedPet"
             android:layout_width="match_parent"
             android:layout_height="73dp"
-            android:text="@string/feedCatButton" />
+            android:text="@string/feedCatButton"
+            android:layout_weight=".1"/>
 
         <Button
             android:id="@+id/btnUpdate"
             android:layout_width="match_parent"
             android:layout_height="66dp"
-            android:text="test: update" />
+            android:text="test: update"
+            android:visibility="visible"
+            android:layout_weight=".1"/>
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
