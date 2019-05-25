@@ -1,5 +1,6 @@
-package com.FeedMyPet;
+package com.FeedMyPet.activities;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -7,6 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.FeedMyPet.R;
+import com.FeedMyPet.helper.Constants;
+import com.FeedMyPet.helper.DateManager;
 
 import org.json.JSONObject;
 
@@ -18,12 +23,17 @@ import java.net.SocketTimeoutException;
 import java.net.URL;
 
 
-public class MainActivity extends AppCompatActivity {
+public class FeedPage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cat_details);
+        Intent intent = getIntent();
+        String PetID = intent.getStringExtra("petID");
+
+        //TODO Change this to actual logged in user
+        String userID = "1";
 
         final Button btnUpdate = findViewById(R.id.btnUpdate);
         final Button btnSendTime = findViewById(R.id.btnFeedPet);
@@ -57,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void UpdateLastFed(){
-        new GetUrlContentTask().execute(Constants.GET_URL_HOME_ID);
+        //new GetUrlContentTask().execute(Constants.GET_URL_HOME_ID);
     }
 
 
